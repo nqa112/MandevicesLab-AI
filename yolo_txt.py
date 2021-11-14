@@ -8,12 +8,12 @@ for sub in folder:
       imgFolder = os.path.join(datasetPath, "images", sub)
       labelFolder = os.path.join(datasetPath, "labels", sub)
 
-      for file in os.listdir(imgFolder):
-            img = cv2.imread(os.path.join(imgFolder, file))
+      for file in os.listdir(labelFolder):
+            num = file.replace(".txt", "")
+            img = cv2.imread(os.path.join(imgFolder, f"{num}.jpg"))
             hImg, wImg = img.shape[:2]
-            num = file.replace(".jpg", "")
-
-            with open(os.path.join(labelFolder, f"{num}.txt"), mode = "r") as f:
+            
+            with open(os.path.join(labelFolder, file), mode = "r") as f:
                   lines = f.readlines()
                   
                   for _, ln in enumerate(lines):
